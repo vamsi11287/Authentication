@@ -1,0 +1,134 @@
+1.set up all things.
+2.>>>>mode.js<<<<<<<<
+                    i)crete a static function to check given email is unique.
+
+                    ii)import bcrypt -->create a salt to give level of security to our password.
+
+                    iii)create a variable like -->user to store our data of email,and hash password and after that return the variable
+
+3>>>>>userController.js<<<<<<
+                    i)Singupuser:-destructure the email,password values from request.body
+
+                    ii)create try and catch block and setup the catch block with the error
+
+                    iii)In the Try block we have to call the signup static function form the (---usermodel.js---) and store in a variable to use await
+
+                    iv)At the time of decleare the variable we need two things they are --(email,password)--and destructure those things
+
+                    v)Then we can send the data using res.status(200).json({email,variable(crated on the ==>iii point===)})
+
+4.>>>>>>create a token<<<<<<<
+                    i)First Create a utils folder in that folder we have to create --->token.js<--- file  create a token and install package of token 
+
+                    ii)in that token file we have to require the token and name it as JWT
+
+                    iii)And create an anomymous to store our token like ===>createtoken<=== like async operation in that we have to give the ((((_id))) because every credientials have seperate--> _id<--
+
+                    iV)we have to import --->dotenv<--- and security purpose because we have to store our folder to the git that will not show our secret in this reason only we use .env ==>this file will not uploaded in github or any thing....
+
+                    and create a secret --->JWT_SECRET =  mySecret<----
+
+                    V)And create token using the ===>.sign()//this parameter want three things ({_id},process.env.jwt_secret,{expresIn:"days"})<=== and return thing ,export it
+
+                    vi)it will require-->(require("dotenv").config();
+                    ) in ==>index.js<== to store our token
+`                   
+                    vii) require the create token into the ==>userconroller<== and assigned it to avariable of token
+
+                    viii)in point-->3.5 we write the responce of ({email,variable})-->and modify that things to ({email,password,token})
+
+5.>>>>>>create static signin function in model.js<<<<<<<<<
+                    i)--->usermodel.js<--- create a static login function
+
+                    ii)In that function create a variable named it as (user)--->to store the email
+
+                    iii)Give the condition if user is not exist throw an error like incorrect email
+
+                    iV)create a variable to compare the password and hash password  and  assigned a variable named it as match,
+
+                    v)Give the condition if match is not exist throw an error like incorrect password
+
+                    vi)And return the user--> (point 5-2)
+
+------------------------------------------------------------------
+Frontend:--
+------------
+1.crate Context:--
+                    i)create a context in the context name it as the -->Authcontext
+
+                    ii)import createContex,useReducer-->(used to manage States-->in useState we have to give one value,in useRed here we give two values) ,
+                    reducer is a function that carried out tasks
+
+                    iii)And initialize the createContext to Authcontext -->(a variable) and Export it and Export hole things
+
+                    iV)In the user reducer we will give parameters like ==> authReduser , {user:null}
+
+                    v)And create authReducer as a anonymous function of parameters ---> state,action-->(reducer are used to manipulate and the main thing is the action) and export it ,in that function we use --> switch statement
+                    -->(contd-1).wather user logged in 
+                    -->(contd-2).wather user not logged in 
+
+                    vi)(contd-1)-->function what ever we have to perform in here update the value and update state of that function
+                    (contd-2)-->if user not logged in the user is null 
+                    (if user not providerd any action)-->default the state is not changed and return state;
+
+                    vii)give return -->in that create <authContextProvider value={{..state,dispatch}} 
+
+                    viii)dispatch function is calling -->authReducer that take two parameters-->state->(normal state),action->(action is
+                    add the function in order to modifie the state) 
+                    And in that tag we use {children} and Give that children into to a parameter of -->authContextProvider
+
+                    ix)and wrap our Authcontext to the -->index.js
+
+2.crate a custom --->folder<--- name it as Hooks 
+                    i)In the folder create a file like -->useAuthContext.js 
+
+                    ii)import Authcontext from context,
+                    import createContext
+
+                    iii)create a arrow(or)anonymous function useAuthContext and export it
+
+                    iV)when ever we use the fuctionality of signup or the user (or)context (or) dispatch functionwe cannot directly use that with the help of -->useReducer thats why we use custom hooks,and call that hook,pass the values so that it get reflected in the reducer Function
+
+                    v)create a variable and assign ---> useContext(AuthContext)
+                    if that variable is not true throw an error ,( or )return that variable
+        
+3.>>>>signup.js and login.js<<<<<
+                    i)login.js:-
+                    create the seperate states for (email,login) in the -->login.js-->use it empty --->'' 
+
+                    ii)crete a onchange,onsubmit(events)->in the form and copy the same thing as signup
+4.>>>>>LocalStorage<<<<<<
+                    i)create a -->useSignup.js<-- file in Hook
+                    in thet we will create a function useSignup
+
+                    ii)The useSignup is only be functional whenever we use -->useAuthContext<--
+
+                    iii)in tha useSignup first we create a state for -->error as [error,SetError]
+5.>>>>uselogoutHook<<<<<<<
+                    i)first create a file name it as useLogout.js
+
+                    ii)import useAuthContext to work functionality of this file
+
+                    iii) by the help of useLogout Hook we do two things only 
+                    (1)delete the localStorage memory
+                    and change back to the user state is null
+                    (2)route back to signup page
+
+                    iv)crate a useLogout function and in that function  deastrusture -->dispatch -->{it change the state of user} from useAuthContext
+
+                    v)create another arrow function name as --->logout in async in that function wants two parameters (email,password) 
+
+                    vi)inthe logout function first remove the local storage after that dispatch the user to "logout" and return  logout
+
+                    --->export the uselogout function
+
+6.>>>>>usesignupHOOK<<<<<<<
+                    i)createa a file name useLogin.js
+
+                    ii)
+
+
+
+
+
+
